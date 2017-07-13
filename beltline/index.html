@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="css/qgis2web.css">
+        <link rel="stylesheet" href="css/MarkerCluster.css" />
+        <link rel="stylesheet" href="css/MarkerCluster.Default.css" />
+        <link rel="stylesheet" href="css/Control.OSMGeocoder.css" />
+        <link rel="stylesheet" href="css/leaflet-measure.css" />
+        <!-- <link rel="stylesheet" href="/css/master.css"> -->
+        <style>
+        #map {
+            width: 100%;
+            height: 600px;
+        }
+        </style>
+        <title>Atlanta Beltline </title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/multi-style-layer.js"></script>
+        <script src="js/leaflet-heat.js"></script>
+        <script src="js/leaflet-svg-shape-markers.min.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/OSMBuildings-Leaflet.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/leaflet-tilelayer-wmts.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/Control.OSMGeocoder.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script src="js/leaflet.markercluster.js"></script>
+        <script src="data/IncomebyCensusBlock0.js"></script>
+        <script src="data/Subareas1.js"></script>
+        <script src="data/BeltlineTCUCorridor2.js"></script>
+
+        <script type="text/javascript" src="https://pym.nprapps.org/pym.v1.min.js"></script>
+
+        <script>
+        var pymChild = new pym.Child();
+        var highlightLayer;
+        function highlightFeature(e) {
+            highlightLayer = e.target;
+
+            if (e.target.feature.geometry.type === 'LineString') {
+              highlightLayer.setStyle({
+                color: '#ffff00',
+              });
+            } else {
+              highlightLayer.setStyle({
+                fillColor: '#ffff00',
+                fillOpacity: 1
+              });
+            }
+            highlightLayer.openPopup();
+        }
+        L.ImageOverlay.include({
+            getBounds: function () {
+                return this._bounds;
+            }
+        });
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[33.6785366283,-84.4790758419],[33.8674596557,-84.3225338021]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.addAttribution('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a>');
+        var measureControl = new L.Control.Measure({
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
+        });
+        measureControl.addTo(map);
+        var bounds_group = new L.featureGroup([]);
+        var basemap0 = L.tileLayer('http://{s}.tile.thunderforest.com/transport/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>,&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+            maxZoom: 28
+        });
+        basemap0.addTo(map);
+        function setBounds() {
+        }
+        function geoJson2heat(geojson, weight) {
+          return geojson.features.map(function(feature) {
+            return [
+              feature.geometry.coordinates[1],
+              feature.geometry.coordinates[0],
+              feature.properties[weight]
+            ];
+          });
+        }
+        function pop_IncomebyCensusBlock0(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    layer.setStyle(style_IncomebyCensusBlock0_0(feature));
+
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Median Household Income</strong><br />' + (feature.properties['Median_hou'] !== null ? Autolinker.link(String(feature.properties['Median_hou'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent);
+        }
+
+        function style_IncomebyCensusBlock0_0(feature) {
+            if (feature.properties['Median_hou'] >= 10000.000000 && feature.properties['Median_hou'] <= 34062.571429 ) {
+                return {
+                pane: 'pane_IncomebyCensusBlock0',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.45)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0,
+                fillOpacity: 1,
+                fillColor: 'rgba(250,250,250,0.45)',
+            }
+            }
+            if (feature.properties['Median_hou'] >= 34062.571429 && feature.properties['Median_hou'] <= 58125.142857 ) {
+                return {
+                pane: 'pane_IncomebyCensusBlock0',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.45)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0,
+                fillOpacity: 1,
+                fillColor: 'rgba(209,209,209,0.45)',
+            }
+            }
+            if (feature.properties['Median_hou'] >= 58125.142857 && feature.properties['Median_hou'] <= 82187.714286 ) {
+                return {
+                pane: 'pane_IncomebyCensusBlock0',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.45)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0,
+                fillOpacity: 1,
+                fillColor: 'rgba(168,168,168,0.45)',
+            }
+            }
+            if (feature.properties['Median_hou'] >= 82187.714286 && feature.properties['Median_hou'] <= 106250.285714 ) {
+                return {
+                pane: 'pane_IncomebyCensusBlock0',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.45)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0,
+                fillOpacity: 1,
+                fillColor: 'rgba(128,128,128,0.45)',
+            }
+            }
+            if (feature.properties['Median_hou'] >= 106250.285714 && feature.properties['Median_hou'] <= 130312.857143 ) {
+                return {
+                pane: 'pane_IncomebyCensusBlock0',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.45)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0,
+                fillOpacity: 1,
+                fillColor: 'rgba(87,87,87,0.45)',
+            }
+            }
+            if (feature.properties['Median_hou'] >= 130312.857143 && feature.properties['Median_hou'] <= 154375.428571 ) {
+                return {
+                pane: 'pane_IncomebyCensusBlock0',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.45)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0,
+                fillOpacity: 1,
+                fillColor: 'rgba(46,46,46,0.45)',
+            }
+            }
+            if (feature.properties['Median_hou'] >= 154375.428571 && feature.properties['Median_hou'] <= 178438.000000 ) {
+                return {
+                pane: 'pane_IncomebyCensusBlock0',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.45)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0,
+                fillOpacity: 1,
+                fillColor: 'rgba(5,5,5,0.45)',
+            }
+            }
+        }
+        map.createPane('pane_IncomebyCensusBlock0');
+        map.getPane('pane_IncomebyCensusBlock0').style.zIndex = 400;
+        map.getPane('pane_IncomebyCensusBlock0').style['mix-blend-mode'] = 'normal';
+    var layer_IncomebyCensusBlock0 = new L.geoJson(json_IncomebyCensusBlock0, {
+        attribution: '<a href=""></a>',
+        pane: 'pane_IncomebyCensusBlock0',
+        onEachFeature: pop_IncomebyCensusBlock0,
+        style: style_IncomebyCensusBlock0_0,
+    });
+        bounds_group.addLayer(layer_IncomebyCensusBlock0);
+        map.addLayer(layer_IncomebyCensusBlock0);
+        function pop_Subareas1(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    layer.setStyle(style_Subareas1_0(feature));
+
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Affordable Housing Units</th>\
+                        <td>' + (feature.properties['AffUnits'] !== null ? Autolinker.link(String(feature.properties['AffUnits'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Subarea</th>\
+                        <td>' + (feature.properties['Subarea'] !== null ? Autolinker.link(String(feature.properties['Subarea'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent);
+        }
+
+        function style_Subareas1_0(feature) {
+            if (feature.properties['AffUnits'] >= 0.000000 && feature.properties['AffUnits'] <= 55.200000 ) {
+                return {
+                pane: 'pane_Subareas1',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.77)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0,
+                fillOpacity: 1,
+                fillColor: 'rgba(247,251,255,0.77)',
+            }
+            }
+            if (feature.properties['AffUnits'] >= 55.200000 && feature.properties['AffUnits'] <= 110.400000 ) {
+                return {
+                pane: 'pane_Subareas1',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.77)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0,
+                fillOpacity: 1,
+                fillColor: 'rgba(200,221,240,0.77)',
+            }
+            }
+            if (feature.properties['AffUnits'] >= 110.400000 && feature.properties['AffUnits'] <= 165.600000 ) {
+                return {
+                pane: 'pane_Subareas1',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.77)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0,
+                fillOpacity: 1,
+                fillColor: 'rgba(115,179,216,0.77)',
+            }
+            }
+            if (feature.properties['AffUnits'] >= 165.600000 && feature.properties['AffUnits'] <= 220.800000 ) {
+                return {
+                pane: 'pane_Subareas1',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.77)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0,
+                fillOpacity: 1,
+                fillColor: 'rgba(40,121,185,0.77)',
+            }
+            }
+            if (feature.properties['AffUnits'] >= 220.800000 && feature.properties['AffUnits'] <= 276.000000 ) {
+                return {
+                pane: 'pane_Subareas1',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.77)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0,
+                fillOpacity: 1,
+                fillColor: 'rgba(8,48,107,0.77)',
+            }
+            }
+        }
+        map.createPane('pane_Subareas1');
+        map.getPane('pane_Subareas1').style.zIndex = 401;
+        map.getPane('pane_Subareas1').style['mix-blend-mode'] = 'normal';
+    var layer_Subareas1 = new L.geoJson(json_Subareas1, {
+        attribution: '<a href=""></a>',
+        pane: 'pane_Subareas1',
+        onEachFeature: pop_Subareas1,
+        style: style_Subareas1_0,
+    });
+        bounds_group.addLayer(layer_Subareas1);
+        map.addLayer(layer_Subareas1);
+        function pop_BeltlineTCUCorridor2(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    layer.setStyle(style_BeltlineTCUCorridor2_0(feature));
+
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_BeltlineTCUCorridor2_0() {
+            return {
+                pane: 'pane_BeltlineTCUCorridor2',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0,
+                fillOpacity: 1,
+                fillColor: 'rgba(240,239,167,1.0)',
+            }
+        }
+        map.createPane('pane_BeltlineTCUCorridor2');
+        map.getPane('pane_BeltlineTCUCorridor2').style.zIndex = 402;
+        map.getPane('pane_BeltlineTCUCorridor2').style['mix-blend-mode'] = 'normal';
+    var layer_BeltlineTCUCorridor2 = new L.geoJson(json_BeltlineTCUCorridor2, {
+        attribution: '<a href=""></a>',
+        pane: 'pane_BeltlineTCUCorridor2',
+        onEachFeature: pop_BeltlineTCUCorridor2,
+        style: style_BeltlineTCUCorridor2_0,
+    });
+        bounds_group.addLayer(layer_BeltlineTCUCorridor2);
+        map.addLayer(layer_BeltlineTCUCorridor2);
+        var title = new L.Control();
+        title.onAdd = function (map) {
+            this._div = L.DomUtil.create('div', 'info');
+            this.update();
+            return this._div;
+        };
+        title.update = function () {
+            this._div.innerHTML = '<h2>Atlanta Beltline </h2>';
+        };
+        title.addTo(map);
+        var osmGeocoder = new L.Control.OSMGeocoder({
+            collapsed: false,
+            position: 'topright',
+            text: 'Search',
+        });
+        osmGeocoder.addTo(map);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/BeltlineTCUCorridor2.png" /> Beltline TCU Corridor': layer_BeltlineTCUCorridor2,'Subareas<br /><table><tr><td style="text-align: center;"><img src="legend/Subareas1_0550.png" /></td><td> 0 - 55 </td></tr><tr><td style="text-align: center;"><img src="legend/Subareas1_551101.png" /></td><td> 55 - 110 </td></tr><tr><td style="text-align: center;"><img src="legend/Subareas1_1101662.png" /></td><td> 110 - 166 </td></tr><tr><td style="text-align: center;"><img src="legend/Subareas1_1662213.png" /></td><td> 166 - 221 </td></tr><tr><td style="text-align: center;"><img src="legend/Subareas1_2212764.png" /></td><td> 221 - 276 </td></tr></table>': layer_Subareas1,'Income by Census Block<br /><table><tr><td style="text-align: center;"><img src="legend/IncomebyCensusBlock0_10000340630.png" /></td><td> 10000 - 34063 </td></tr><tr><td style="text-align: center;"><img src="legend/IncomebyCensusBlock0_34063581251.png" /></td><td> 34063 - 58125 </td></tr><tr><td style="text-align: center;"><img src="legend/IncomebyCensusBlock0_58125821882.png" /></td><td> 58125 - 82188 </td></tr><tr><td style="text-align: center;"><img src="legend/IncomebyCensusBlock0_821881062503.png" /></td><td> 82188 - 106250 </td></tr><tr><td style="text-align: center;"><img src="legend/IncomebyCensusBlock0_1062501303134.png" /></td><td> 106250 - 130313 </td></tr><tr><td style="text-align: center;"><img src="legend/IncomebyCensusBlock0_1303131543755.png" /></td><td> 130313 - 154375 </td></tr><tr><td style="text-align: center;"><img src="legend/IncomebyCensusBlock0_1543751784386.png" /></td><td> 154375 - 178438 </td></tr></table>': layer_IncomebyCensusBlock0,}).addTo(map);
+        setBounds();
+        pym.sendHeight();
+        </script>
+    </body>
+</html>
