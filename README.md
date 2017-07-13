@@ -17,8 +17,9 @@ http://opendata.atlantaregional.com/datasets/income-2015
 
 ## Shapefiles proprietary to the AJC
   - Beltline Subareas:
-  Created using Atlanta Beltline Google Map as reference: https://beltline.org/about/the-atlanta-beltline-project/neighborhoods/ (click "Expand Map" in left corner and select "Subareas").
-  See "Subareas Shapefiles" in this project for access to the shapefiles.
+  Created using Atlanta Beltline Google Map as reference: https://beltline.org/about/the-atlanta-beltline-project/neighborhoods/ (click "Expand Map" in left corner and select "Subareas"). 
+  *Note that the subarea boundaries are not completely accurate, as the AJC does not have access to the City of Atlanta or the Beltline's subarea shapefiles. This rendering was done to the best of my ability, going street by street to define the boundaries. Use caution when referencing this map.*  
+  See `subareas_shapefiles` in this project for access to the shapefiles.
  
 ## Hosted on 
 [Amazon S3](https://s3.amazonaws.com/ajcnewsapps/2017/beltline/index.html)
