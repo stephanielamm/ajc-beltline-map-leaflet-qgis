@@ -4,10 +4,10 @@
 A map of the Atlanta Beltline project's development subareas imposed over median income by census block. 
 
 #### Built with:
-  - QGIS
-  - qgis2web
-  - Leaflet.js
-  - Pym.js for responsiveness on mobile site
+  - [QGIS](http://www.qgis.org/en/site/)
+  - [qgis2web](https://github.com/tomchadwin/qgis2web)
+  - [Leaflet.js](http://leafletjs.com/)
+  - [Pym.js](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0ahUKEwii9vity4bVAhVCRCYKHZ-fCuoQFggmMAA&url=http%3A%2F%2Fblog.apps.npr.org%2Fpym.js%2F&usg=AFQjCNGsGNajxYaqpsar2BuUNu6GXtEqjA&cad=rja) for responsiveness on mobile site
 
 ## Shapefiles from Atlanta Regional Commission
 
@@ -16,7 +16,9 @@ http://opendata.atlantaregional.com/datasets/income-2015
   - Beltline TCU Corridor: http://opendata.atlantaregional.com/datasets/coaplangis::beltline-tcu-corridor
 
 ## Shapefiles proprietary to the AJC
-  - Beltline Subareas. Created using Atlanta Beltline Google Map as reference: https://beltline.org/about/the-atlanta-beltline-project/neighborhoods/ (click "Expand Map" in left corner)
+  - Beltline Subareas:
+  Created using Atlanta Beltline Google Map as reference: https://beltline.org/about/the-atlanta-beltline-project/neighborhoods/ (click "Expand Map" in left corner and select "Subareas").
+  See "Subareas Shapefiles" in this project for access to the shapefiles.
  
 ## Hosted on 
 [Amazon S3](https://s3.amazonaws.com/ajcnewsapps/2017/beltline/index.html)
