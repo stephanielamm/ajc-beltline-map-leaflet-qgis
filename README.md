@@ -2,6 +2,7 @@
 
 
 A map of the Atlanta Beltline project's development subareas imposed over median income by census block. 
+<img src="beltline.png">
 
 #### Built with:
   - [QGIS](http://www.qgis.org/en/site/)
