@@ -11,8 +11,8 @@
         <link rel="stylesheet" href="css/MarkerCluster.css" />
         <link rel="stylesheet" href="css/MarkerCluster.Default.css" />
         <link rel="stylesheet" href="css/Control.OSMGeocoder.css" />
-        <link rel="stylesheet" href="css/leaflet-measure.css" />
         <!-- <link rel="stylesheet" href="/css/master.css"> -->
+
         <style>
         #map {
             width: 100%;
@@ -40,7 +40,6 @@
         <script src="data/IncomebyCensusBlock0.js"></script>
         <script src="data/Subareas1.js"></script>
         <script src="data/BeltlineTCUCorridor2.js"></script>
-
         <script type="text/javascript" src="https://pym.nprapps.org/pym.v1.min.js"></script>
 
         <script>
@@ -79,8 +78,8 @@
         });
         measureControl.addTo(map);
         var bounds_group = new L.featureGroup([]);
-        var basemap0 = L.tileLayer('http://{s}.tile.thunderforest.com/transport/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>,&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+        var basemap0 = L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>,Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>',
             maxZoom: 28
         });
         basemap0.addTo(map);
@@ -112,14 +111,15 @@
             });
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2"><strong>Median Household Income</strong><br />' + (feature.properties['Median_hou'] !== null ? Autolinker.link(String(feature.properties['Median_hou'])) : '') + '</td>\
+                        <th scope="row">Median Household Income</th>\
+                        <td>' + (feature.properties['med2'] !== null ? Autolinker.link(String(feature.properties['med2'])) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent);
         }
 
         function style_IncomebyCensusBlock0_0(feature) {
-            if (feature.properties['Median_hou'] >= 10000.000000 && feature.properties['Median_hou'] <= 34062.571429 ) {
+            if (feature.properties['q2wHide_Median_hou'] >= 10000.000000 && feature.properties['q2wHide_Median_hou'] <= 34062.571429 ) {
                 return {
                 pane: 'pane_IncomebyCensusBlock0',
                 opacity: 1,
@@ -132,7 +132,7 @@
                 fillColor: 'rgba(250,250,250,0.45)',
             }
             }
-            if (feature.properties['Median_hou'] >= 34062.571429 && feature.properties['Median_hou'] <= 58125.142857 ) {
+            if (feature.properties['q2wHide_Median_hou'] >= 34062.571429 && feature.properties['q2wHide_Median_hou'] <= 58125.142857 ) {
                 return {
                 pane: 'pane_IncomebyCensusBlock0',
                 opacity: 1,
@@ -145,7 +145,7 @@
                 fillColor: 'rgba(209,209,209,0.45)',
             }
             }
-            if (feature.properties['Median_hou'] >= 58125.142857 && feature.properties['Median_hou'] <= 82187.714286 ) {
+            if (feature.properties['q2wHide_Median_hou'] >= 58125.142857 && feature.properties['q2wHide_Median_hou'] <= 82187.714286 ) {
                 return {
                 pane: 'pane_IncomebyCensusBlock0',
                 opacity: 1,
@@ -158,7 +158,7 @@
                 fillColor: 'rgba(168,168,168,0.45)',
             }
             }
-            if (feature.properties['Median_hou'] >= 82187.714286 && feature.properties['Median_hou'] <= 106250.285714 ) {
+            if (feature.properties['q2wHide_Median_hou'] >= 82187.714286 && feature.properties['q2wHide_Median_hou'] <= 106250.285714 ) {
                 return {
                 pane: 'pane_IncomebyCensusBlock0',
                 opacity: 1,
@@ -171,7 +171,7 @@
                 fillColor: 'rgba(128,128,128,0.45)',
             }
             }
-            if (feature.properties['Median_hou'] >= 106250.285714 && feature.properties['Median_hou'] <= 130312.857143 ) {
+            if (feature.properties['q2wHide_Median_hou'] >= 106250.285714 && feature.properties['q2wHide_Median_hou'] <= 130312.857143 ) {
                 return {
                 pane: 'pane_IncomebyCensusBlock0',
                 opacity: 1,
@@ -184,7 +184,7 @@
                 fillColor: 'rgba(87,87,87,0.45)',
             }
             }
-            if (feature.properties['Median_hou'] >= 130312.857143 && feature.properties['Median_hou'] <= 154375.428571 ) {
+            if (feature.properties['q2wHide_Median_hou'] >= 130312.857143 && feature.properties['q2wHide_Median_hou'] <= 154375.428571 ) {
                 return {
                 pane: 'pane_IncomebyCensusBlock0',
                 opacity: 1,
@@ -197,7 +197,7 @@
                 fillColor: 'rgba(46,46,46,0.45)',
             }
             }
-            if (feature.properties['Median_hou'] >= 154375.428571 && feature.properties['Median_hou'] <= 178438.000000 ) {
+            if (feature.properties['q2wHide_Median_hou'] >= 154375.428571 && feature.properties['q2wHide_Median_hou'] <= 178438.000000 ) {
                 return {
                 pane: 'pane_IncomebyCensusBlock0',
                 opacity: 1,
@@ -245,6 +245,9 @@
                     <tr>\
                         <th scope="row">Subarea</th>\
                         <td>' + (feature.properties['Subarea'] !== null ? Autolinker.link(String(feature.properties['Subarea'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['nickname'] !== null ? Autolinker.link(String(feature.properties['nickname'])) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent);
