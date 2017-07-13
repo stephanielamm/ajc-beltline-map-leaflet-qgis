@@ -23,7 +23,7 @@ http://opendata.atlantaregional.com/datasets/income-2015
   See `subareas_shapefiles` in this project for access to the shapefiles.
  
 ## Hosted on 
-[Amazon S3](https://s3.amazonaws.com/ajcnewsapps/2017/beltline/index.html)
+[Amazon S3](https://s3.amazonaws.com/ajcnewsapps/2017/beltline/index.html#13/33.9060/-84.3966)
 
 ## Built By 
 [Stephanie Lamm](http://stephanielamm.com/) for the [Atlanta Journal-Constitution](http://www.ajc.com/). 
