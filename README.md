@@ -19,7 +19,7 @@ For a tutorial of how to use gqis2web and these shapefiles, see [this presentati
 http://opendata.atlantaregional.com/datasets/income-2015
   - Beltline TCU Corridor: http://opendata.atlantaregional.com/datasets/coaplangis::beltline-tcu-corridor
 
-## Shapefiles proprietary to the AJC
+## Shapefiles created by the AJC
   - Beltline Subareas:
   Created using Atlanta Beltline Google Map as reference: https://beltline.org/about/the-atlanta-beltline-project/neighborhoods/ (click "Expand Map" in left corner and select "Subareas"). 
   *Note that the subarea boundaries are not completely accurate, as the AJC does not have access to the City of Atlanta or the Beltline's subarea shapefiles. This rendering was done to the best of my ability, going street by street to define the boundaries. Use caution when referencing this map.*  
