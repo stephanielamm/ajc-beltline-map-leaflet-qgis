@@ -4,6 +4,9 @@
 A map of the Atlanta Beltline project's development subareas imposed over median income by census block. 
 <img src="beltline.png">
 
+#### Tutorial:
+For a tutorial of how to use gqis2web and these shapefiles, see [this presentation](https://docs.google.com/presentation/d/1W8fFe7U6doVhV607-A_ZRIBjWOvkDjX1iWx0tFEMAco/edit?usp=sharing).
+
 #### Built with:
   - [QGIS](http://www.qgis.org/en/site/)
   - [qgis2web](https://github.com/tomchadwin/qgis2web)
